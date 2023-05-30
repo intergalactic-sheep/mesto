@@ -1,0 +1,5 @@
+.profile__edit-button {
+  background-image: url('../../../img/edit_button.svg');
+  max-width: 24px;
+  max-height: 24px;
+}
