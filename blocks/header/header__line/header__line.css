@@ -1,5 +1,6 @@
 .header__line {
   border-bottom: 1px solid #545454;
   margin-top: 41px;
+  padding: 0;
   opacity: .7;
 }

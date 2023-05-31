@@ -17,12 +17,14 @@
 @import url('../blocks/profile/profile__name/profile__name.css');
 @import url('../blocks/profile/profile__work/profile__work.css');
 @import url('../blocks/profile/profile__edit-button/profile__edit-button.css');
+@import url('../blocks/profile/profile__add-button/profile__add-button.css');
 
 @import url('../blocks/elements/elements.css');
 @import url('../blocks/elements/elements__item/elements__item.css');
 @import url('../blocks/elements/elements__image/elements__image.css');
 @import url('../blocks/elements/elements__dashboard/elements__dashboard.css');
 @import url('../blocks/elements/elements__text/elements__text.css');
+@import url('../blocks/elements/elements__like-button/elements__like-button.css');
 
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/footer__copyright/footer__copyright.css');
