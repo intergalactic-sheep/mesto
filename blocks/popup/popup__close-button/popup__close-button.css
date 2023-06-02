@@ -1,0 +1,8 @@
+.popup__close-button {
+  background-image: url('../../../img/popup-close.svg');
+  background-position: center;
+  margin: -40px 0 8px 475px;
+  width: 32px;
+  height: 32px;
+  z-index: 2;
+}

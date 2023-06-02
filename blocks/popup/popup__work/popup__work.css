@@ -1,0 +1,14 @@
+.popup__work {
+  border: 0;
+  width: 358px;
+  height: 27px;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(0 0, 0, .2);
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  margin-bottom: 52px;
+  font-family: inherit;
+}
+
