@@ -81,13 +81,16 @@
   <footer class="footer">
     <p class="footer__copyright">© 2023 Баранов Егор</p>
   </footer>
+
   <div class="popup">
-    <button class="button popup__close-button"></button>
+    <button class="button popup__close-button" type="button"></button>
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <input class="popup__name" type="text">
-      <input class="popup__work" type="text">
-      <button class="button popup__save-button">Сохранить</button>
+      <form class="popup__form">
+        <input class="popup__name" type="text">
+        <input class="popup__work" type="text">
+        <button class="button popup__save-button" type="submit">Сохранить</button>
+      </form>
     </div>
   </div>
   <script src="scripts/index.js"></script>
