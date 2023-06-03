@@ -10,23 +10,10 @@ function editOpen() {
 
 editButton.addEventListener('click', editOpen);
 
-function editClose(evt) {
+function editClose() {
   popup.classList.remove('popup__opened');
 }
 
 closeButton.addEventListener('click', editClose);
 
-function saveChanges(evt) {
-  let name = document.querySelector('.profile__name');
-  let work = document.querySelector('.profile__work');
-  let popupName = document.querySelector('.popup__name');
-  popupName = name;
-  let popupWork = document.querySelector('.popup__work');
-  popupWork = work;
-
-  name.textContent = `${popupName.value}`;
-  work.textContent = `${popupWork.value}`;
-}
-
-saveButton.addEventListener('click', saveChanges, editClose);
 
