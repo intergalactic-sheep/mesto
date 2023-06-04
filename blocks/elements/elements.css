@@ -7,3 +7,13 @@
   row-gap: 20px;
   margin-bottom: 67px;
 }
+
+@media screen and (max-width: 500px) {
+  .elements {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    margin-bottom: 48px;
+    justify-items: center;
+    row-gap: 22px;
+  }
+}

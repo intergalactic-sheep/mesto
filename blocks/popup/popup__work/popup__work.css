@@ -12,3 +12,10 @@
   font-family: inherit;
 }
 
+@media screen and (max-width: 500px) {
+  .popup__work {
+    width: 238px;
+    margin-bottom: 45px;
+  }
+}
+

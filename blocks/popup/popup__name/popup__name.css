@@ -11,3 +11,9 @@
   margin-bottom: 30px;
   font-family: inherit;
 }
+
+@media screen and (max-width: 500px) {
+  .popup__name {
+    width: 238px;
+  }
+}

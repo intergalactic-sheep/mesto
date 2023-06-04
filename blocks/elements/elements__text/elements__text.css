@@ -1,7 +1,7 @@
 .elements__text {
-  max-width: 190px;
+  max-width: 200px;
+  margin-left: 20px;
   padding: 0;
-  margin: 25px auto 31px 21px;
   font-size: 24px;
   font-weight: 900;
   line-height: 29px;

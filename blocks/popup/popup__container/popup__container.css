@@ -9,3 +9,10 @@
   align-items: center;
   z-index: 2;
 }
+
+@media screen and (max-width: 500px) {
+  .popup__container {
+    width: 282px;
+    height: 322px;
+  }
+}

@@ -2,5 +2,12 @@
   display: flex;
   background-color: white;
   width: 100%;
-  height: calc(100% - 282);
+  max-height: 79px;
+  align-items: center;
+}
+
+@media screen and (max-width: 500px) {
+  .elements__dashboard {
+    max-width: 282px;
+  }
 }
