@@ -36,6 +36,6 @@ Please, during the working process follow the actual version of the project!
 
 ## Ссылка на GitHub Pages / GitHub Pages URL
 
-https://intergalactic-sheep.github.io/russian-travel/
+https://intergalactic-sheep.github.io/mesto/
 
 [Yandex Practicum](https://practicum.yandex.ru/)
