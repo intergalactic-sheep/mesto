@@ -1,4 +1,4 @@
-.popup__work {
+.popup__input {
   border: 0;
   width: 358px;
   height: 27px;
@@ -8,14 +8,20 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  margin-bottom: 52px;
+  margin-bottom: 30px;
   font-family: inherit;
 }
 
+.popup__input:last-of-type {
+  margin-bottom: 52px;
+}
+
 @media screen and (max-width: 500px) {
-  .popup__work {
+  .popup__input {
     width: 238px;
+  }
+
+  .popup__input:last-of-type {
     margin-bottom: 45px;
   }
 }
-

@@ -8,8 +8,8 @@ const popupForm = document.querySelector('.popup__form');
 const profileName = document.querySelector('.profile__name');
 const profileWork = document.querySelector('.profile__work');
 
-let nameInput = document.querySelector('.popup__name');
-let workInput = document.querySelector('.popup__work');
+let nameInput = document.querySelector('.popup__input_type_name');
+let workInput = document.querySelector('.popup__input_type_work');
 
 function setPopupInputValue() {
   nameInput.value = profileName.textContent;
@@ -27,17 +27,15 @@ function saveChanges(evt) {
   editClose();
 }
 
-popupForm.addEventListener('submit', saveChanges);
-
 function editOpen() {
-  popup.classList.add('popup__opened');
+  popup.classList.add('popup_opened');
   setPopupInputValue();
 }
 
-editButton.addEventListener('click', editOpen);
-
 function editClose() {
-  popup.classList.remove('popup__opened');
+  popup.classList.remove('popup_opened');
 }
 
 closeButton.addEventListener('click', editClose);
+editButton.addEventListener('click', editOpen);
+popupForm.addEventListener('submit', saveChanges);
