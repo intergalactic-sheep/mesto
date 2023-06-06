@@ -10,11 +10,16 @@
   overflow: hidden;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 960px) {
   .profile__work {
-    margin-bottom: 32px;
+    margin: 0 auto 32px auto;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .profile__work {
     font-size: 14px;
     line-height: 17px;
-    text-align: center;
   }
 }
