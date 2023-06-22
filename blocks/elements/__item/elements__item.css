@@ -3,5 +3,6 @@
   flex-direction: column;
   border-radius: 10px;
   overflow: hidden;
-  max-width: fit-content;
+  max-width: 282px;
+  max-height: 361px;
 }
