@@ -22,11 +22,11 @@
       <div class="profile__info">
         <div class="profile__container">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button type="button" class="button profile__edit-button"></button>
+          <button type="button" class="button open-button profile__edit-button"></button>
         </div>
         <p class="profile__work">Исследователь океана</p>
       </div>
-      <button type="button" class="button profile__add-button"></button>
+      <button type="button" class="button open-button profile__add-button"></button>
     </section>
     <section class="elements"></section>
   </main>
@@ -34,7 +34,7 @@
     <p class="footer__copyright">© 2023 Баранов Егор</p>
   </footer>
 
-  <div class="popup">
+  <div class="popup popup_type_edit">
     <button class="button popup__close-button" type="button"></button>
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
@@ -42,6 +42,18 @@
         <input class="popup__input popup__input_type_name" name="popup-name" type="text">
         <input class="popup__input popup__input_type_work" name="popup-work" type="text">
         <button type="submit" class="button popup__save-button">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_add">
+    <button class="button popup__close-button" type="button"></button>
+    <div class="popup__container">
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form" name="popup-form">
+        <input class="popup__input popup__input_type_place" name="popup-place" type="text" placeholder="Название">
+        <input class="popup__input popup__input_type_link" name="popup-link" type="text" placeholder="Ссылка на картинку">
+        <button type="submit" class="button popup__save-button">Создать</button>
       </form>
     </div>
   </div>
