@@ -1,3 +1,4 @@
+const root = document.querySelector('.page');
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('.popup_type_edit');
@@ -5,7 +6,6 @@ const popupAdd = document.querySelector('.popup_type_add');
 const saveButton = popupEdit.querySelector('.popup__save-button');
 const popupEditForm = popupEdit.querySelector('.popup__form');
 const popupAddForm = popupAdd.querySelector('.popup__form');
-const root = document.querySelector('.page');
 
 const elements = document.querySelector('.elements');
 const card = document.querySelector('#card').content;
@@ -81,7 +81,7 @@ function addOpen() {
 function popupClose(evt) {
   const closeButton = evt.target;
 
-  if (closeButton.classList.contains('button')) {
+  if (closeButton.classList.contains('popup__close-button') || closeButton.classList.contains('popup__save-button')) {
     closeButton.closest('.popup').classList.remove('popup_opened');
   }
 };
@@ -107,8 +107,16 @@ function addCard(evt) {
   popupClose();
 };
 
+function likeInteraction(evt) {
+  const likeButton = evt.target;
+
+  if (likeButton.classList.contains('elements__like-button')) {
+    likeButton.classList.toggle('elements__like-button_active');
+  }
+};
 
 root.addEventListener('click', popupClose);
+root.addEventListener('click', likeInteraction);
 editButton.addEventListener('click', editOpen);
 addButton.addEventListener('click', addOpen);
 popupEditForm.addEventListener('submit', saveChanges);
