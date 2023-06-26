@@ -12,6 +12,8 @@ const card = document.querySelector('#card').content;
 
 const nameInput = document.querySelector('.popup__input_type_name');
 const workInput = document.querySelector('.popup__input_type_work');
+const placeInput = document.querySelector('.popup__input_type_place');
+const linkInput = document.querySelector('.popup__input_type_link');
 const profileName = document.querySelector('.profile__name');
 const profileWork = document.querySelector('.profile__work');
 
@@ -88,8 +90,6 @@ function popupClose(evt) {
 
 function createCard() {
   const newCard = card.querySelector('.elements__item').cloneNode(true);
-  const placeInput = document.querySelector('.popup__input_type_place');
-  const linkInput = document.querySelector('.popup__input_type_link');
 
   newCard.querySelector('.elements__image').src = linkInput.value;
   newCard.querySelector('.elements__image').alt = placeInput.value;
@@ -115,8 +115,17 @@ function likeInteraction(evt) {
   }
 };
 
+function deleteCard(evt) {
+  const deleteButton = evt.target;
+
+  if (deleteButton.classList.contains('elements__delete')) {
+    deleteButton.closest('.elements__item').remove();
+  }
+};
+
 root.addEventListener('click', popupClose);
 root.addEventListener('click', likeInteraction);
+root.addEventListener('click', deleteCard);
 editButton.addEventListener('click', editOpen);
 addButton.addEventListener('click', addOpen);
 popupEditForm.addEventListener('submit', saveChanges);
