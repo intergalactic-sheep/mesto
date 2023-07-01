@@ -133,7 +133,6 @@ function likeInteraction(evt) {
   }
 };
 
-
 function deleteCard (evt) {
   const deleteButton = evt.target;
   if (deleteButton.classList.contains('elements__delete')) {
