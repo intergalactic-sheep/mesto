@@ -60,7 +60,7 @@ function openAddPopup() {
   openPopup(popupAdd);
 };
 
-const renderCard = () => {
+const renderCard = (place, link) => {
   const cardElement = createCard(place, link);
   elements.prepend(cardElement);
 };
@@ -86,8 +86,7 @@ function createCard (place, link) {
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
-  createCard(place = placeInput.value, link = linkInput.value);
-  renderCard();
+  renderCard(placeInput.value, linkInput.value);
   popupAddForm.reset();
   closePopup(popupAdd);
 };
@@ -105,8 +104,7 @@ function deleteCardIfRequired(evt) {
 };
 
 initialCards.reverse().forEach((item) => {
-  createCard(place = item.name, link = item.link);
-  renderCard();
+  renderCard(item.name, item.link);
 });
 
 elements.addEventListener('click', likeInteractionIfRequired);
