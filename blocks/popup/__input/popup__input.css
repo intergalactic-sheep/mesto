@@ -6,22 +6,19 @@
   border-bottom: 1px solid rgba(0 0, 0, .2);
   background-color: transparent;
   font-size: 14px;
+  margin-bottom: 30px;
   font-weight: 400;
   line-height: 17px;
-  margin-bottom: 30px;
   font-family: inherit;
+  outline: none;
 }
 
 .popup__input:last-of-type {
-  margin-bottom: 52px;
+  margin-bottom: 0;
 }
 
 @media screen and (max-width: 650px) {
   .popup__input {
     width: 238px;
-  }
-
-  .popup__input:last-of-type {
-    margin-bottom: 45px;
   }
 }

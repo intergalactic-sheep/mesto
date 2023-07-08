@@ -1,0 +1,8 @@
+.popup__input_state_invalid {
+  border-bottom: 1px solid red;
+  margin-bottom: 0;
+}
+
+.popup__input_state_invalid:focus {
+  background-color: white;
+}
