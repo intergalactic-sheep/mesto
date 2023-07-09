@@ -61,6 +61,7 @@ function setEventListeners(formElement, config) {
     evt.preventDefault();
     if (!formElement.checkValidity()) return;
   });
+  toggleButtonState(submitButtonElement, formElement.checkValidity(), config);
 };
 
 function enableValidation(config) {
