@@ -1,6 +1,7 @@
 const root = document.querySelector('.page');
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
+const popup = document.querySelector('.popup');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
 const popupImage = document.querySelector('.popup_type_image');
@@ -23,16 +24,34 @@ const popupSubtitle = popupImage.querySelector('.popup__subtitle');
 
 function openPopup(item) {
   item.classList.add('popup_opened');
+  item.addEventListener('click', closePopupByOverlayClick);
+  item.addEventListener('click', closePopupByClick);
+  document.addEventListener('keydown', closePopupByEscButton);
 };
 
 function closePopup(item) {
   item.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByEscButton);
 };
 
 function closePopupByClick(evt) {
-  if (evt.target.classList.contains('popup__close-button')) {
+  if (evt.target.classList.contains('popup__close-button') || evt.target.classList.contains('popup')) {
     closePopup(evt.currentTarget);
   }
+};
+
+function closePopupByOverlayClick(evt) {
+  if (evt.target.classList.contains('popup')) {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  };
+};
+
+function closePopupByEscButton(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  };
 };
 
 function setEditPopupInputValues() {
@@ -113,6 +132,3 @@ editButton.addEventListener('click', openEditPopup);
 addButton.addEventListener('click', openAddPopup);
 popupEditForm.addEventListener('submit', saveEditPopupChanges);
 popupAddForm.addEventListener('submit', handleCardFormSubmit);
-popupEdit.addEventListener('click', closePopupByClick);
-popupAdd.addEventListener('click', closePopupByClick);
-popupImage.addEventListener('click', closePopupByClick);
