@@ -1,5 +1,5 @@
-import { FormValidator } from "./validation.js";
-import { Card } from "./card.js";
+import { FormValidator } from "./FormValidator.js";
+import { Card } from "./Card.js";
 import { initialCards } from "./constant.js";
 
 
@@ -35,9 +35,19 @@ const placeInput = document.querySelector('.popup__input_type_place');
 const profileName = document.querySelector('.profile__name');
 const profileWork = document.querySelector('.profile__work');
 
-function renderCard(name, link, templateSelector) {
+const popupEditFormValidation = new FormValidator(config, popupEditForm);
+popupEditFormValidation.enableValidation();
+const popupAddFormValidation = new FormValidator(config, popupAddForm);
+popupAddFormValidation.enableValidation();
+
+function createCard(name, link, templateSelector) {
   const card = new Card(name, link, templateSelector);
   const cardElement = card.generateCard();
+  return cardElement;
+}
+
+function renderCard(name, link, templateSelector) {
+  const cardElement = createCard(name, link, templateSelector);
   elements.prepend(cardElement);
 }
 
@@ -49,7 +59,7 @@ function handleCardFormSubmit(evt) {
   evt.preventDefault();
   renderCard(placeInput.value, linkInput.value, '.card');
   popupAddForm.reset();
-  disableSubmitButton(popupAddButton);
+  popupAddFormValidation._toggleButtonState();
   closePopup(popupAdd);
 };
 
@@ -59,7 +69,7 @@ export function openPopup(item) {
   document.addEventListener('keydown', closePopupByEscButton);
 };
 
-export function closePopup(item) {
+function closePopup(item) {
   item.classList.remove('popup_opened');
   item.removeEventListener('click', closePopupByClick);
   document.removeEventListener('keydown', closePopupByEscButton);
@@ -91,7 +101,7 @@ function setProfileInfoValues() {
 function saveEditPopupChanges(evt) {
   evt.preventDefault();
   setProfileInfoValues();
-  disableSubmitButton(popupEditButton);
+  popupEditFormValidation._toggleButtonState();
   closePopup(popupEdit);
 };
 
@@ -104,17 +114,7 @@ function openAddPopup() {
   openPopup(popupAdd);
 };
 
-function disableSubmitButton(buttonElement) {
-  buttonElement.disabled = 'disabled';
-  buttonElement.classList.add('popup__save-button_disabled');
-};
-
 editButton.addEventListener('click', openEditPopup);
 addButton.addEventListener('click', openAddPopup);
 popupEditForm.addEventListener('submit', saveEditPopupChanges);
 popupAddForm.addEventListener('submit', handleCardFormSubmit);
-
-const popupEditFormValidation = new FormValidator(config, popupEditForm);
-popupEditFormValidation.enableValidation();
-const popupAddFormValidation = new FormValidator(config, popupAddForm);
-popupAddFormValidation.enableValidation();
