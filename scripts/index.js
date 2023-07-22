@@ -59,7 +59,7 @@ function handleCardFormSubmit(evt) {
   evt.preventDefault();
   renderCard(placeInput.value, linkInput.value, '.card');
   popupAddForm.reset();
-  popupAddFormValidation._toggleButtonState();
+  popupAddFormValidation.toggleButtonState();
   closePopup(popupAdd);
 };
 
@@ -101,7 +101,7 @@ function setProfileInfoValues() {
 function saveEditPopupChanges(evt) {
   evt.preventDefault();
   setProfileInfoValues();
-  popupEditFormValidation._toggleButtonState();
+  popupEditFormValidation.toggleButtonState();
   closePopup(popupEdit);
 };
 
