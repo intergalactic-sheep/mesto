@@ -16,8 +16,6 @@ const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
-const popupAddButton = popupAdd.querySelector('.popup__save-button');
-const popupEditButton = popupEdit.querySelector('.popup__save-button');
 const popupEditForm = popupEdit.querySelector('.popup__form_type_edit');
 const popupAddForm = popupAdd.querySelector('.popup__form');
 export const popupImage = document.querySelector('.popup_type_image');
@@ -59,7 +57,7 @@ function handleCardFormSubmit(evt) {
   evt.preventDefault();
   renderCard(placeInput.value, linkInput.value, '.card');
   popupAddForm.reset();
-  popupAddFormValidation._toggleButtonState();
+  popupAddFormValidation.toggleButtonState();
   closePopup(popupAdd);
 };
 
@@ -101,7 +99,7 @@ function setProfileInfoValues() {
 function saveEditPopupChanges(evt) {
   evt.preventDefault();
   setProfileInfoValues();
-  popupEditFormValidation._toggleButtonState();
+  popupEditFormValidation.toggleButtonState();
   closePopup(popupEdit);
 };
 
