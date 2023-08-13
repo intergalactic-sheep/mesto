@@ -8,17 +8,16 @@
   <meta name="description" content="Социальная сеть для обмена фотографиями" />
   <meta name="keywords" content="Путешествия, Фото, Социальная сеть" />
   <meta name="author" content="Баранов Егор" />
-  <link rel="stylesheet" href="./pages/index.css" />
   <title>Место</title>
 </head>
 
 <body class="page">
   <header class="header">
-    <img src="./img/logo.svg" class="header__logo" alt="логотип Место">
+    <img src="<%=require('../src/img/logo.svg')%>" class="header__logo" alt="логотип Место">
   </header>
   <main class="content">
     <section class="profile">
-      <img src="./img/jacque_yve_cousteau.jpg" alt="Аватар пользователя" class="profile__pic">
+      <img src="<%=require('../src/img/jacque_yve_cousteau.jpg')%>" alt="Аватар пользователя" class="profile__pic">
       <div class="profile__info">
         <div class="profile__container">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -84,8 +83,6 @@
       </div>
     </div>
   </template>
-
-  <script src="scripts/index.js" type="module" defer></script>
 </body>
 
 </html>
