@@ -4,24 +4,12 @@ import { FormValidator } from "../components/FormValidator.js";
 import { Card } from "../components/Card.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
-import { initialCards } from "../constant/constant.js";
+import { initialCards, config } from "../utils/constant.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { Section } from "../components/Section.js";
 
-const config = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_disabled',
-  inputErrorClass: 'popup__input_state_invalid',
-  errorClass: 'popup__input-error'
-};
-
-const elements = document.querySelector('.elements');
 const nameInput = document.querySelector('.popup__input_type_name');
 const workInput = document.querySelector('.popup__input_type_work');
-const placeInput = document.querySelector('.popup__input_type_place');
-const linkInput = document.querySelector('.popup__input_type_link');
 
 const userInfo = new UserInfo({ name: '.profile__name', work: '.profile__work' });
 
@@ -35,20 +23,13 @@ const handleCardClick = (name, link) => {
   popupCardImage.open(name, link);
 };
 
-const handleCardFormSubmit = (evt) => {
-  evt.preventDefault();
-  renderCard(placeInput.value, linkInput.value);
-  popupAddFormValidation.toggleButtonState();
+const handleCardFormSubmit = (data) => {
+  renderCard(data);
   popupAdd.close();
 };
 
-const handleProfileInfoUpdate = (evt) => {
-  evt.preventDefault();
-  userInfo.setUserInfo({
-    name: nameInput.value,
-    work: workInput.value
-  });
-  popupEditFormValidation.toggleButtonState();
+const handleProfileInfoUpdate = ({ name, work }) => {
+  userInfo.setUserInfo(name, work);
   popupEdit.close();
 };
 
@@ -61,19 +42,23 @@ function createCard(name, link) {
   return cardElement;
 }
 
-function renderCard(name, link) {
+function renderCard({ name, link }) {
   const cardElement = createCard(name, link);
-  elements.prepend(cardElement);
+  cardsSection.prependItem(cardElement);
 }
 
-editButton.addEventListener('click', () => {
-  setPopupEditFormValues();
-  popupEdit.open();
-});
+const popupAdd = new PopupWithForm('.popup_type_add', handleCardFormSubmit);
+popupAdd.setEventListeners();
+const popupAddForm = document.forms['add-form'];
 
-addButton.addEventListener('click', () => {
-  popupAdd.open();
-});
+const popupEdit = new PopupWithForm('.popup_type_edit', handleProfileInfoUpdate);
+popupEdit.setEventListeners();
+const popupEditForm = document.forms['edit-form'];
+
+const popupEditFormValidation = new FormValidator(config, popupEditForm);
+popupEditFormValidation.enableValidation();
+const popupAddFormValidation = new FormValidator(config, popupAddForm);
+popupAddFormValidation.enableValidation();
 
 const popupCardImage = new PopupWithImage('.popup_type_image');
 popupCardImage.setEventListeners();
@@ -81,23 +66,21 @@ popupCardImage.setEventListeners();
 const cardsSection = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, '.card', handleCardClick);
-    const cardElement = card.generateCard();
-    cardsSection.addItem(cardElement);
+    const card = createCard(item.name, item.link);
+    cardsSection.addItem(card);
   }
 }, '.elements');
 
 cardsSection.renderItems();
 
-const popupAdd = new PopupWithForm('.popup_type_add', handleCardFormSubmit);
-popupAdd.setEventListeners();
-const popupAddForm = popupAdd.popup.querySelector('.popup__form');
+editButton.addEventListener('click', () => {
+  setPopupEditFormValues();
+  popupEditFormValidation.resetValidation();
+  popupEdit.open();
+});
 
-const popupEdit = new PopupWithForm('.popup_type_edit', handleProfileInfoUpdate);
-popupEdit.setEventListeners();
-const popupEditForm = popupEdit.popup.querySelector('.popup__form_type_edit');
-
-const popupEditFormValidation = new FormValidator(config, popupEditForm);
-popupEditFormValidation.enableValidation();
-const popupAddFormValidation = new FormValidator(config, popupAddForm);
-popupAddFormValidation.enableValidation();
+addButton.addEventListener('click', () => {
+  popupAddFormValidation.resetValidation();
+  popupAddFormValidation.toggleButtonState();
+  popupAdd.open();
+});
