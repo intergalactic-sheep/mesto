@@ -34,4 +34,3 @@ export const config = {
   errorClass: 'popup__input-error'
 };
 
-
