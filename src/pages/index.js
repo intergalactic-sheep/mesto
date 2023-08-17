@@ -72,6 +72,5 @@ editButton.addEventListener('click', () => {
 
 addButton.addEventListener('click', () => {
   popupAddFormValidation.resetValidation();
-  popupAddFormValidation.toggleButtonState();
   popupAdd.open();
 });
