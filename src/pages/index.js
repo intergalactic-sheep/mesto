@@ -15,11 +15,13 @@ const api = new Api(configApi);
 
 const userInfo = new UserInfo({ name: '.profile__name', work: '.profile__work', avatar: '.profile__pic' });
 
-api.getUserInfo()
-  .then((data) => {
-    userInfo.setUserInfo(data.name, data.about);
-    userInfo.setUserAvatar(data.avatar);
-    userId = data._id;
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo(userData.name, userData.about);
+    userInfo.setUserAvatar(userData.avatar);
+    userId = userData._id;
+    cardsSection.renderItems(cards);
   })
   .catch((err) => console.log(err));
 
@@ -44,12 +46,23 @@ const handleProfileInfoUpdate = ({ name, about }) => {
       userInfo.setUserInfo(name, about);
       popupEdit.close();
     })
-  popupEdit.loadingForm(false, 'Сохранить');
+    .catch((err) => console.log(err))
+    .finally(() => {
+      popupEdit.loadingForm(false, 'Сохранить');
+    })
 };
 
 const handleAvatarChangeSubmit = (data) => {
-  api.editAvatar(data).then(({ avatar }) => userInfo.setUserAvatar(avatar)).catch((err) => console.log(err));
-  popupAvatar.close();
+  popupAvatar.loadingForm(true);
+  api.editAvatar(data)
+    .then(({ avatar }) => {
+      userInfo.setUserAvatar(avatar)
+      popupAvatar.close()
+    })
+    .catch((err) => console.log(err))
+    .finally(() => {
+      popupAvatar.loadingForm(false, 'Сохранить');
+    });
 };
 
 const editButton = document.querySelector('.profile__edit-button');
@@ -139,11 +152,10 @@ const cardsSection = new Section({
   }
 }, '.elements');
 
-api.getInitialCards().then(cards => cardsSection.renderItems(cards))
-  .catch((err) => console.log(err));
-
 editButton.addEventListener('click', () => {
-  api.getUserInfo().then((res) => popupEdit.setInputValues(res)).catch((err) => console.log(err));
+  api.getUserInfo()
+    .then((res) => popupEdit.setInputValues(res))
+    .catch((err) => console.log(err));
   popupEditFormValidation.resetValidation();
   popupEdit.open();
 });
